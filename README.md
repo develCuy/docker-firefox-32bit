@@ -1,4 +1,4 @@
-DOCKER-DESKTOP
+firefox-32bit
 ==============
 
 ##Description
@@ -37,13 +37,13 @@ Requirements:
 ###Building the docker image
 
 ```
-$ docker build -t [username]/docker-desktop git://github.com/develCuy/docker-firefox-32bit.git
+$ docker build -t [username]/firefox-32bit git://github.com/develCuy/docker-firefox-32bit.git
 
 OR
 
 $ git clone https://github.com/develCuy/docker-firefox-32bit.git
-$ cd docker-desktop
-$ docker build -t [username]/docker-desktop .
+$ cd docker-firefox-32bit
+$ docker build -t [username]/firefox-32bit .
 ```
 
 ###Running the docker image created (-d: detached mode, -P: expose the port 22 on the host machine)
@@ -77,13 +77,13 @@ $ docker port $CONTAINER_ID 22
 $ ifconfig | grep "inet addr:" 
 inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the LAN's IP for this machine
 
-$ ssh docker@192.168.56.102 -p 49153 "sh -c './docker-desktop -s 800x600 -d 10 > /dev/null 2>&1 &'" # Here is where we use the external port
+$ ssh docker@192.168.56.102 -p 49153 "sh -c './firefox-32bit -s 800x600 -d 10 > /dev/null 2>&1 &'" # Here is where we use the external port
 docker@192.168.56.102's password: xxxxxxxxxxxx 
 
-$ ./docker-desktop -h
+$ ./firefox-32bit -h
 
 -----------------------------------------------------------
-Usage: docker-desktop [-s screen_size] [-d session_number]
+Usage: firefox-32bit [-s screen_size] [-d session_number]
 -s : screen resolution (Default = 800x600
 -d : session number (Default = 10)
 -h : help
