@@ -17,21 +17,22 @@
 # Date: 07/28/2013
 
 
-FROM ubuntu:14.04
-MAINTAINER Roberto G. Hashioka "roberto_hashioka@hotmail.com"
+FROM besn0847/ubuntu32
+MAINTAINER Fernando Paredes García "fernando@develcuy.com"
 
 RUN apt-get update -y
-RUN apt-get upgrade -y
+#RUN apt-get upgrade -y
 
 # Set the env variable DEBIAN_FRONTEND to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 
 # Installing the environment required: xserver, xdm, flux box, roc-filer and ssh
-RUN apt-get install -y xpra rox-filer openssh-server pwgen xserver-xephyr xdm fluxbox xvfb sudo
+#RUN apt-get install -y xpra rox-filer openssh-server pwgen xserver-xephyr xdm fluxbox xvfb sudo
+RUN apt-get install -y openssh-server pwgen sudo
 
 # Configuring xdm to allow connections from any IP address and ssh to allow X11 Forwarding. 
-RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
-RUN sed -i '/#any host/c\*' /etc/X11/xdm/Xaccess
+#RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
+#RUN sed -i '/#any host/c\*' /etc/X11/xdm/Xaccess
 RUN ln -s /usr/bin/Xorg /usr/bin/X
 RUN echo X11Forwarding yes >> /etc/ssh/ssh_config
 
@@ -52,7 +53,8 @@ RUN apt-get -y install fuse
 
 # Installing the apps: Firefox, flash player plugin, LibreOffice and xterm
 # libreoffice-base installs libreoffice-java mentioned before
-RUN apt-get install -y libreoffice-base firefox libreoffice-gtk libreoffice-calc xterm
+#RUN apt-get install -y libreoffice-base firefox libreoffice-gtk libreoffice-calc xterm
+RUN apt-get install -y firefox icedtea-7-plugin
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 || :
